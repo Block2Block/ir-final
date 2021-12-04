@@ -14,12 +14,12 @@
 
     <!-- Load world -->
     <include>
-      <uri>model://new_supermarket_self/newshelf</uri>
+      <uri>model://all_supermarket_models/newshelf</uri>
     </include>
 
     <!-- Load world -->
     <include>
-      <uri>model://new_supermarket_wall/newsupermarketwall</uri>
+      <uri>model://all_supermarket_models/newsupermarketwall</uri>
     </include>
 
     <physics type="ode">
