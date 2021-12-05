@@ -23,6 +23,8 @@ find_package(catkin REQUIRED COMPONENTS
 
 find_package(gazebo REQUIRED)
 
+catkin_python_setup()
+
 ################################################################################
 # Setup for python modules and scripts
 ################################################################################
