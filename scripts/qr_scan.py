@@ -1,8 +1,7 @@
+#!/bin/python3
 import cv2
-from numpy.lib.function_base import append
 import rospy
-import pyzbar.pyzbar 
-import decode
+from pyzbar.pyzbar import decode
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 from nav_msgs.msg import Odometry
@@ -15,7 +14,7 @@ loc_product = ""
 def get_pose(msg):
     loc_product = msg.pose.pose
 
-def callback(imgdata):
+def img_callback(imgdata):
 
     try:
         imagecv = CvBridge.imgmsg_to_cv2(imgdata)       #convert rosimage to cvimage
@@ -29,11 +28,12 @@ def callback(imgdata):
             #Since QR information is present we record the loc
             odom_sub = rospy.Subscriber('/odom', Odometry, callback=get_pose)
             product_loc_dict[qrinfo].append(loc_product)
+            print(product_loc_dict)
 
     except CvBridgeError as e:
         rospy.logerr(e)
     
 
 rospy.init_node('qr_scan_node')
-sub = rospy.Subscriber("/turtlebot3_burger/camera1/image_raw", Image, callback)  # Subscriber object which will listen "LaserScan" type messages from the "/scan" Topic and call the "callback" function each time it reads something from the Topic
+sub = rospy.Subscriber("/turtlebot3_burger/camera1/image_raw", Image, callback=img_callback)  # Subscriber object which will listen "LaserScan" type messages from the "/scan" Topic and call the "callback" function each time it reads something from the Topic
 rospy.spin() # Loops infinitely until someone stops the program execution
