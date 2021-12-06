@@ -340,12 +340,6 @@
         <image id="ID21">
             <init_from>qr_wall/texture.png</init_from>
         </image>
-        <image id="ID35">
-            <init_from>qr_wall/texture_0.png</init_from>
-        </image>
-        <image id="ID49">
-            <init_from>qr_wall/texture_1.png</init_from>
-        </image>
     </library_images>
     <scene>
         <instance_visual_scene url="#ID2" />
