@@ -12,15 +12,179 @@
       <uri>model://ground_plane</uri>
     </include>
 
-    <!-- Load world -->
     <include>
-      <uri>model://all_supermarket_models/newshelf</uri>
+      <uri>model://all_supermarket_models/final_supermarket_wall</uri>
     </include>
 
-    <!-- Load world -->
+
+
+
+    <include>
+      <uri>model://all_supermarket_models/left_box</uri>
+    </include>
+
+    <include>
+      <uri>model://all_supermarket_models/middle_box</uri>
+    </include>
+
+    <include>
+      <uri>model://all_supermarket_models/right_box</uri>
+    </include>
+
+    <!-- Load world 
+    <include>
+      <uri>model://all_supermarket_models/newshelf</uri>
+    </include>-->
+
+    <!-- Load world 
     <include>
       <uri>model://all_supermarket_models/newsupermarketwall</uri>
-    </include>
+    </include>-->
+
+    <!-- Add Milk Wall -->
+    <model name='qr_wall_MILK'>
+      <pose frame=''>0 -2 0 0 -0 1.57</pose>
+      <static>1</static>
+      <link name='body'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.166667</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://all_supermarket_models/qr_wall_milk/meshes/qr_wall.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+
+    <model name='qr_wall_FRIUT'>
+      <pose frame=''>-3 -2 0 0 -0 1.57</pose>
+      <static>1</static>
+      <link name='body'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.166667</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://all_supermarket_models/qr_wall_fruit/meshes/qr_wall.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+
+    <model name='qr_wall_SNACK'>
+      <pose frame=''>-6 -2 0 0 -0 1.57</pose>
+      <static>1</static>
+      <link name='body'>
+        <inertial>
+          <mass>1</mass>
+          <inertia>
+            <ixx>0.166667</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.166667</iyy>
+            <iyz>0</iyz>
+            <izz>0.166667</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://all_supermarket_models/qr_wall_snack/meshes/qr_wall.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
 
     <physics type="ode">
       <real_time_update_rate>1000.0</real_time_update_rate>
