@@ -1,8 +1,8 @@
 import cv2
 from numpy.lib.function_base import append
 import rospy
-import pyzbar.pyzbar import decode
-
+import pyzbar.pyzbar 
+import decode
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 from nav_msgs.msg import Odometry
