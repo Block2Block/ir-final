@@ -15,9 +15,9 @@ def get_pose(msg):
     loc_product = msg.pose.pose
 
 def img_callback(imgdata):
-
+    img_bridge = CvBridge()
     try:
-        imagecv = CvBridge.imgmsg_to_cv2(imgdata)       #convert rosimage to cvimage
+        imagecv = img_bridge.imgmsg_to_cv2(imgdata, "bgr8")       #convert rosimage to cvimage
         imgbw = cv2.threhold(imagecv, THRESH, 255, cv2.THRESH_BINARY)[1]        #thresholding
         qrdata = decode(imgbw)      #extracting qr code information
         if qrdata:
