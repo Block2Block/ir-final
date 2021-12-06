@@ -12,11 +12,19 @@
       <uri>model://ground_plane</uri>
     </include>
 
+    <!--
     <include>
       <uri>model://all_supermarket_models/final_supermarket_wall</uri>
     </include>
 
+    <include>
+      <uri>model://all_supermarket_models/smaller_wall</uri>
+    </include>
+    -->
 
+    <include>
+      <uri>model://all_supermarket_models/purple_wall</uri>
+    </include>
 
 
     <include>
