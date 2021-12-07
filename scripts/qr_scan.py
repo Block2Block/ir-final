@@ -10,9 +10,9 @@ import math
 import json
 #from dictionary import product_loc_dict
 
-THRESH = 40     #threshold for image
-
 product_loc_dict = dict()
+
+THRESH = 40     #threshold for image
 
 def increase_brightness(image, value=10):
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -56,10 +56,13 @@ def img_callback(imgdata):
             if qrinfo not in product_loc_dict.keys():
                 product_loc_dict[qrinfo] = list()
                 product_loc_dict[qrinfo].append(xy_tuple)
+                with open('/home/coziant/catkin_ws/src/ir-final/scripts/data.json', 'w') as f:
+                    json.dump(product_loc_dict, f)
                 print(product_loc_dict)
                 
     except CvBridgeError as e:
         rospy.logerr(e)
+
 
 rospy.init_node('qr_scan_node')
 sub = rospy.Subscriber("/turtlebot3_burger/camera1/image_raw", Image, callback=img_callback)  # Subscriber object which will listen "LaserScan" type messages from the "/scan" Topic and call the "callback" function each time it reads something from the Topic

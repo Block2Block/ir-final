@@ -1,11 +1,16 @@
 #!/bin/python3
+
 import rospy
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
-from qr_scan import product_loc_dict
+import json
 
 def set_xy(input):
-    xy_cord = product_loc_dict[input]
+    global loaded_dict
+    with open('/home/coziant/catkin_ws/src/ir-final/scripts/data.json') as json_file:
+        loaded_dict = json.load(json_file)
+
+    xy_cord = loaded_dict[input]
     print(xy_cord)
 
     global x_goal
@@ -50,18 +55,22 @@ def movebase_client():
 
 # If the python node is executed as main process (sourced directly)
 if __name__ == '__main__':
-    print(product_loc_dict)
-    user_input = input('MILK, FRUITS, SNACK? ')
-    if user_input == 'MILK':
-        set_xy(user_input)
-    if user_input == 'FRUITS':
-        set_xy(user_input)
-    if user_input == 'SNACK':
-        set_xy(user_input)
+    #os.system("rosnode kill qr_scan_node")
+    #print(loaded_dict)
     
     try:
         # Initializes a rospy node to let the SimpleActionClient publish and subscribe
+        
         rospy.init_node('movebase_client_py')
+
+        user_input = input('MILK, FRUITS, SNACK? ')
+        if user_input == 'MILK':
+            set_xy(user_input)
+        if user_input == 'FRUITS':
+            set_xy(user_input)
+        if user_input == 'SNACK':
+            set_xy(user_input)
+
         result = movebase_client()
         if result:
             rospy.loginfo("Goal Reached!")
