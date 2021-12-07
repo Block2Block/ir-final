@@ -51,7 +51,7 @@
 
     <!-- Add Milk Wall -->
     <model name='qr_wall_MILK'>
-      <pose frame=''>0 -2 0 0 -0 1.57</pose>
+      <pose frame=''>0 -2 -0.5 0 -0 1.57</pose>
       <static>1</static>
       <link name='body'>
         <inertial>
@@ -99,7 +99,7 @@
     </model>
 
     <model name='qr_wall_FRIUT'>
-      <pose frame=''>-3 -2 0 0 -0 1.57</pose>
+      <pose frame=''>-3 -2 -0.5 0 -0 1.57</pose>
       <static>1</static>
       <link name='body'>
         <inertial>
@@ -147,7 +147,7 @@
     </model>
 
     <model name='qr_wall_SNACK'>
-      <pose frame=''>-6 -2 0 0 -0 1.57</pose>
+      <pose frame=''>-6 -2 -0.5 0 -0 1.57</pose>
       <static>1</static>
       <link name='body'>
         <inertial>
