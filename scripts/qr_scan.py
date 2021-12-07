@@ -5,6 +5,7 @@ from pyzbar.pyzbar import decode
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge, CvBridgeError
 from nav_msgs.msg import Odometry
+from geometry_msgs.msg import Pose, PoseArray, Quaternion
 
 THRESH = 40     #threshold for image
 
@@ -21,7 +22,7 @@ def increase_brightness(image, value=10):
     return image
 
 product_loc_dict = dict()
-loc_product = ""
+loc_product = Pose()
 
 def get_pose(msg):
     loc_product = msg.pose.pose
@@ -36,15 +37,17 @@ def img_callback(imgdata):
         median_blur= cv2.medianBlur(imgbw, 5)       #to remove salt and pepper noise
         qrdata = decode(imgbw)      #extracting qr code information
         if qrdata:
+            #print(f"qrdata {qrdata}")
             qrinfo = qrdata[0].data
+            #print(qrinfo)
+            #type(qrinfo)
             if qrinfo not in product_loc_dict.keys():
                 product_loc_dict[qrinfo] = list()
-            
+                product_loc_dict[qrinfo].append(loc_product)
+                print(product_loc_dict)
             #Since QR information is present we record the loc
             odom_sub = rospy.Subscriber('/odom', Odometry, callback=get_pose)
-            product_loc_dict[qrinfo].append(loc_product)
-            print(product_loc_dict)
-
+                
     except CvBridgeError as e:
         rospy.logerr(e)
     
