@@ -7,8 +7,12 @@ from cv_bridge import CvBridge, CvBridgeError
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import Pose, PoseArray, Quaternion
 import math
+import json
+#from dictionary import product_loc_dict
 
 THRESH = 40     #threshold for image
+
+product_loc_dict = dict()
 
 def increase_brightness(image, value=10):
     hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -21,8 +25,6 @@ def increase_brightness(image, value=10):
     final_hsv = cv2.merge((h, s, v))
     image = cv2.cvtColor(final_hsv, cv2.COLOR_HSV2BGR)
     return image
-
-product_loc_dict = dict()
 
 def round_nearest2(x, a):
     return round(round(x / a) * a, -int(math.floor(math.log10(a))))
@@ -50,7 +52,7 @@ def img_callback(imgdata):
         median_blur= cv2.medianBlur(imgbw, 5)       #to remove salt and pepper noise
         qrdata = decode(imgbw)      #extracting qr code information
         if qrdata:
-            qrinfo = qrdata[0].data
+            qrinfo = str(qrdata[0].data)[2:-1]
             if qrinfo not in product_loc_dict.keys():
                 product_loc_dict[qrinfo] = list()
                 product_loc_dict[qrinfo].append(xy_tuple)

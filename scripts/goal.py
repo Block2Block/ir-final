@@ -2,6 +2,18 @@
 import rospy
 import actionlib
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from qr_scan import product_loc_dict
+
+def set_xy(input):
+    xy_cord = product_loc_dict[input]
+    print(xy_cord)
+
+    global x_goal
+    x_goal = xy_cord[0][0]
+    print(x_goal)
+    global y_goal
+    y_goal = xy_cord[0][1]
+    print(y_goal)
 
 def movebase_client():
 
@@ -17,8 +29,8 @@ def movebase_client():
     goal.target_pose.header.stamp = rospy.Time.now()
 
     # Set X, Y coodiandate
-    goal.target_pose.pose.position.x = -2
-    goal.target_pose.pose.position.y = -2
+    goal.target_pose.pose.position.x = x_goal
+    goal.target_pose.pose.position.y = y_goal
 
     # Set orientation
     # No rotation of the mobile base frame w.r.t. map frame
@@ -38,6 +50,15 @@ def movebase_client():
 
 # If the python node is executed as main process (sourced directly)
 if __name__ == '__main__':
+    print(product_loc_dict)
+    user_input = input('MILK, FRUITS, SNACK? ')
+    if user_input == 'MILK':
+        set_xy(user_input)
+    if user_input == 'FRUITS':
+        set_xy(user_input)
+    if user_input == 'SNACK':
+        set_xy(user_input)
+    
     try:
         # Initializes a rospy node to let the SimpleActionClient publish and subscribe
         rospy.init_node('movebase_client_py')
