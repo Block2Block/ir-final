@@ -46,7 +46,7 @@ def dijkstras(init: Node, dest: Node) -> List[Node]:
         top_level_nodes = []
         print("Executing step " + steps.__str__() + ", current length of top level "
                                                     "nodes is " + len(old_top_level_nodes).__str__() + " and "
-                                                                                                       "highest XY Node is " + highest_x_y.__str__())
+                                                    "highest XY Node is " + highest_x_y.__str__())
         for node in old_top_level_nodes:
             node.state = State.VISITED
             x_inc: int = -3
@@ -104,7 +104,7 @@ def dijkstras(init: Node, dest: Node) -> List[Node]:
                         # This is always the quickest path as the cost will be the same for all nodes we
                         # generate in this iteration.
                         path = new_node.quickest_path.copy()
-                        path.append(node)
+                        path.append(new_node)
                         return path
 
                 if new_node.x > highest_x_y.x and new_node.y > highest_x_y.y:
